@@ -1,0 +1,94 @@
+html {
+  	margin:0;
+  	padding:0;
+	width: 100%;
+}
+
+body {
+  	background-image: url('../img/back-pool.jpg'); 
+  	background-repeat: no-repeat;
+  	background-attachment: fixed;
+  	background-position: top;
+  	background-size: cover; 
+  	color: rgba(230, 230, 230, 0.9);
+}
+	
+/*-------------------------------------------------------------------------*/
+/* CONTAINER                                                               */
+/*-------------------------------------------------------------------------*/
+
+.blue {
+	background-color: #0066cc;
+}
+
+.grey-blue {
+	background-color: #cce6ff;
+}
+
+.deep-blue {
+	background-color: #002b80;
+}
+
+.yellow {
+	background-color: #e6b800;
+}
+
+.orange {
+	background-color: #e65c00;
+}
+
+.grey {
+	background-color: rgba(26, 26, 26, 0.9);
+	color: #e6e6e6;
+}
+
+.zoom-in {
+	-webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1); 
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1); 
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+	transition: all 200ms ease-in;
+    transform: scale(1);
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3);
+}
+
+.zoom-in:hover {
+	box-shadow: 0px 0px 150px #000000;
+  z-index: 2;
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(1.5);
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(1.5);   
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(1.5);
+  transition: all 200ms ease-in;
+  transform: scale(1.1);
+}
+
+.banner {
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	min-height: 160px;
+}
+
+.banner > h3, p, label {
+	color: #1a1a1a;
+}
+
+.banner > h3 {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+	
+/*-------------------------------------------------------------------------*/
+/* TOGGLE                                                                  */
+/*-------------------------------------------------------------------------*/
+
+/*.btn-primary {
+    background-image: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+    background-repeat: repeat-x;
+    border-color: #0d0d0d;
+}*/

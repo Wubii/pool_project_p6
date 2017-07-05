@@ -1,0 +1,8 @@
+services:
+    io_temperature_service:
+        class: RaspberryPiIOBundle\Services\TemperatureService
+        arguments: []
+
+    io_light_service:
+        class: RaspberryPiIOBundle\Services\LightService
+        arguments: []

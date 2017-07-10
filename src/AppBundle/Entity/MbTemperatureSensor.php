@@ -24,7 +24,7 @@ class MbTemperatureSensor
     /**
      * @var string
      *
-     * @ORM\Column(name="serialNumber", type="string", length=255)
+     * @ORM\Column(name="serialNumber", type="string", length=255, nullable=true)
      */
     private $serialNumber;
 

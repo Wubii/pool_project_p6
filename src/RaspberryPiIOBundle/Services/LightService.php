@@ -22,7 +22,9 @@ class LightService
     	switch($sensor)
     	{
     		case self::LIGHT_SENSOR_1:
-    			$result = 2;
+    			$file = fopen("/var/www/pool.com/data/light.txt", "r");
+    			$result = floatval(trim(fgets($file)));
+    			fclose($file);
     			break;
     			
     		default:

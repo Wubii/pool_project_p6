@@ -6,3 +6,7 @@ services:
     io_light_service:
         class: RaspberryPiIOBundle\Services\LightService
         arguments: []
+
+    io_relay_service:
+        class: RaspberryPiIOBundle\Services\RelayService
+        arguments: []

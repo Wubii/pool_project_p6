@@ -1,4 +1,4 @@
 services:
     pump_service:
         class: ControlBundle\Services\PumpService
-        arguments: []
+        arguments: [@doctrine.orm.entity_manager]

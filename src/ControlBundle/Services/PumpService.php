@@ -6,9 +6,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PumpService
 { 
+	private $em = null;
+    
+    public function __construct(Doctrine\ORM\EntityManager $em) 
+    { //Son constructeur avec l'entity manager en paramètre
+        $this->em = $em;
+    }
+    
 	function getNameArray()
 	{
-		$pumpArray = $this->getDoctrine()->getManager()->getRepository('ControlBundle:MbPump')->findAll();
+		$pumpArray = $em->getRepository('ControlBundle:MbPump')->findAll();
 		$nameArray = [];
 		
 		foreach($pumpArray as $pump)

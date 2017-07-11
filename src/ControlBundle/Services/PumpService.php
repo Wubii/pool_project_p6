@@ -2,8 +2,6 @@
 
 namespace ControlBundle\Services;
 
-use Symfony\Component\HttpFoundation\Response;
-
 class PumpService
 { 
 	private $em = null;

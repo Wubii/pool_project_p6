@@ -8,7 +8,7 @@ class PumpService
 { 
 	function getNameArray()
 	{
-		$pumpArray = $this->getDoctrine()->getManager()->getRepository('ControlBundle:MbPumpRepository')->findAll();
+		$pumpArray = $this->getDoctrine()->getManager()->getRepository('ControlBundle:MbPump')->findAll();
 		$nameArray = [];
 		
 		foreach($pumpArray as $pump)
@@ -21,6 +21,6 @@ class PumpService
 	
 	function getPumpState($name)
 	{
-		$pumpState = $this->getDoctrine()->getManager()->getRepository('ControlBundle:MbPumpRepository')->findBy($name);
+	//	$pumpState = $this->getDoctrine()->getManager()->getRepository('ControlBundle:MbPumpRepository')->findBy($name);
 	}
 }

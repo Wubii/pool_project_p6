@@ -12,11 +12,7 @@ class ControlController extends Controller
      */
     public function getPumpStatusAction()
     {
-    	$pumpService = $this->container->get('pump_service');
-	    
-	    $pumpNameArray = $pumpService->getNameArray();
-	    
-        var_dump($pumpNameArray);
+    	return new Response("getPumpStatusAction");
     }
     
     /**

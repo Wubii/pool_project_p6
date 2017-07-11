@@ -1,3 +1,8 @@
+control:
+    resource: "@ControlBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
@@ -5,3 +10,7 @@ app:
 raspberryPiIO:
     resource: '@RaspberryPiIOBundle/Controller/'
     type: annotation
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+    

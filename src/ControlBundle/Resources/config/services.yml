@@ -1,0 +1,4 @@
+services:
+    pump_service:
+        class: ControlBundle\Services\PumpService
+        arguments: []

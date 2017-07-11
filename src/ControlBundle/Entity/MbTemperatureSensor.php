@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace ControlBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * MbTemperatureSensor
  *
  * @ORM\Table(name="mb_temperature_sensor")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\MbTemperatureSensorRepository")
+ * @ORM\Entity(repositoryClass="ControlBundle\Repository\MbTemperatureSensorRepository")
  */
 class MbTemperatureSensor
 {
@@ -24,16 +24,16 @@ class MbTemperatureSensor
     /**
      * @var string
      *
-     * @ORM\Column(name="serialNumber", type="string", length=255, nullable=true)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $serialNumber;
+    private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="serialNumber", type="string", length=255, nullable=true)
      */
-    private $name;
+    private $serialNumber;
 
 
     /**
@@ -44,30 +44,6 @@ class MbTemperatureSensor
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set serialNumber
-     *
-     * @param string $serialNumber
-     *
-     * @return MbTemperatureSensor
-     */
-    public function setSerialNumber($serialNumber)
-    {
-        $this->serialNumber = $serialNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get serialNumber
-     *
-     * @return string
-     */
-    public function getSerialNumber()
-    {
-        return $this->serialNumber;
     }
 
     /**
@@ -92,6 +68,30 @@ class MbTemperatureSensor
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set serialNumber
+     *
+     * @param string $serialNumber
+     *
+     * @return MbTemperatureSensor
+     */
+    public function setSerialNumber($serialNumber)
+    {
+        $this->serialNumber = $serialNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get serialNumber
+     *
+     * @return string
+     */
+    public function getSerialNumber()
+    {
+        return $this->serialNumber;
     }
 }
 

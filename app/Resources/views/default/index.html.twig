@@ -1,51 +1,101 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<!-- Page Content -->
-        <div class="container-fluid">
-				  <div class="row">
-				    <div class="col-lg-offset-2 col-lg-2 banner zoom-in grey-blue" style="margin-right:20px">
-				    	<h3>Air temperature</h3>
-						<h3> {{ temperature1 }} °C</h3>
-				    </div>
-				    <div class="col-lg-2 banner zoom-in blue" style="margin-right:20px">
-				    	<h3>Water temperature</h3>
-				      <h3> {{ temperature2 }}  °C</h3>
-				    </div>
-				    <div class="col-lg-2 banner zoom-in yellow" style="margin-right:20px">
-				      <h3> Luminosity </h3>
-				      <h3></h3>
-				    </div>
-				    <div class="col-lg-2 banner zoom-in orange" style="margin-right:20px;text-align:center">
-				    	<h3>Solar panel Temperature</h3>
-				      <h3> {{ temperature3 }} °C </h3>
-				    </div>
-				  </div>
-				  <div class="row">
-				    <div class="col-lg-offset-3 col-lg-3 banner zoom-in grey" style="margin-right:20px;text-align:center">
-				      <h3 style="color:#e6e6e6"> Solar panel I / O </h3>
-					    <input id="toggle-one" style="cursor:none" {% if relay1 != 1 %} checked {% endif %} disabled type="checkbox">
-				    </div>
-				    <div class="col-lg-3 banner zoom-in grey" style="text-align:center">
-				    	<h3 style="color:#e6e6e6">Pump I / O</h3>
-					    <input id="toggle-two" style="cursor:none" {% if relay2 != 1 %} checked {% endif %} disabled type="checkbox">
-				    </div>
-				  </div>
-				</div>
-      </div>
-      <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
+	  <!-- Page Content -->
+	  <div class="container-fluid">
+	    <div class="row">
+	      <div class="col-lg-offset-2 col-lg-2 banner zoom-in grey-blue" style="margin-right:20px">
+	  	    <h3>Air temperature</h3>
+	        <h3 id="temprature-air"> {{ temperature1 }} °C</h3>
+	      </div>
+	      <div class="col-lg-2 banner zoom-in blue" style="margin-right:20px">
+	        <h3>Water temperature</h3>
+	        <h3 id="temprature-poolwater"> {{ temperature2 }}  °C</h3>
+	      </div>
+	      <div class="col-lg-2 banner zoom-in yellow" style="margin-right:20px">
+	        <h3> Luminosity </h3>
+			<h3></h3>
+	      </div>
+	      <div class="col-lg-2 banner zoom-in orange" style="margin-right:20px;text-align:center">
+	        <h3>Solar panel Temperature</h3>
+	        <h3 id="temprature-solarpanel"> {{ temperature3 }} °C </h3>
+	      </div>
+		</div>
+		<div class="row">
+	      <div class="col-lg-offset-3 col-lg-3 banner zoom-in grey" style="margin-right:20px;text-align:center">
+	        <h3 style="color:#e6e6e6"> Solar panel I / O </h3>
+			<input id="toggle-one" style="cursor:none" type="checkbox">
+	      </div>
+	      <div class="col-lg-3 banner zoom-in grey" style="text-align:center">
+	        <h3 style="color:#e6e6e6">Pump I / O</h3>
+			<input id="toggle-two" style="cursor:none" {% if relay2 != false %} checked {% endif %} disabled type="checkbox">
+	      </div>
+		</div>
+	  </div>
+	</div>
+  <!-- /#page-content-wrapper -->
+  </div>
+  <!-- /#wrapper -->
     
     <script>
-        $(function() {
-            $('#toggle-one').bootstrapToggle();
-        })
+      $(function() {
+          $('#toggle-one').bootstrapToggle();
+          $('#toggle-two').bootstrapToggle();
+          
+          $("#toggle-one").change(function()
+          {
+          	var state = $(this).prop("checked") ? "1" : "0";
+
+      		  $.get(Routing.generate('LOW_LEVEL_set_relay_state', {relay: "relay1", value: state}))
+          })
+          
+          update();
+
+          setInterval(function(){update();}, 10000);
+      })
         
-        $(function() {
-            $('#toggle-two').bootstrapToggle();
-        })
+      function update()
+      {
+      	console.log(update);
+      	updateTemperatures();
+      	updateToggleOne();
+      }
+      
+      function updateTemperatures()
+      {
+				$.get(Routing.generate('LOW_LEVEL_get_air_temperature'), function(data) 
+      	{
+      		console.log(data);
+      		$("#temprature-air").text(data);
+				});
+			
+				$.get(Routing.generate('LOW_LEVEL_get_poolwater_temperature'), function(data) 
+        {
+      		console.log(data);
+      		$("#temprature-poolwater").text(data);
+				});
+				
+				$.get(Routing.generate('LOW_LEVEL_get_solarpanel_temperature'), function(data) 
+      	{
+      		console.log(data);
+      		$("#temprature-solarpanel").text(data);
+				});
+      }
+        
+      function updateToggleOne()
+      {
+      	$.get(Routing.generate('LOW_LEVEL_get_relay_state', {relay: "relay1"}), function(data) 
+      	{
+      		if(data == "On")
+      		{
+      			$('#toggle-one').bootstrapToggle("on");
+      		}
+      		else if(data == "Off")
+      		{
+      			$('#toggle-one').bootstrapToggle("off");
+      		}
+				});
+      }
     </script>
 
 {% endblock %}

@@ -1,11 +1,11 @@
 <?php
 
-namespace RaspberryPiIOBundle\DataFixtures\ORM;
+namespace ControlBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use AppBundle\Entity\MbTemperatureSensor;
+use ControlBundle\Entity\MbTemperatureSensor;
 
 class LoadSensorTemperature implements FixtureInterface
 {

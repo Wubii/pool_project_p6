@@ -28,7 +28,7 @@ class DefaultController extends Controller
         $relay1 = $relayService->getValue($relayNameArray[0]);
 	    $relay2 = $relayService->getValue($relayNameArray[1]);
 	    $relay3 = $relayService->getValue($relayNameArray[2]);
-
+		
         return $this->render('default/index.html.twig', [
             "temperature1" => $temperature1,
 	        "temperature2" => $temperature2,

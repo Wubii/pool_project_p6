@@ -37,3 +37,7 @@ services:
     RaspberryPiIOBundle\:
         resource: '../../src/RaspberryPiIOBundle/*'
         public: true
+        
+    ControlBundle\:
+        resource: '../../src/ControlBundle/*'
+        public: true

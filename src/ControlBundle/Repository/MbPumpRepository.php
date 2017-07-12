@@ -10,4 +10,5 @@ namespace ControlBundle\Repository;
  */
 class MbPumpRepository extends \Doctrine\ORM\EntityRepository
 {
+	
 }

@@ -35,6 +35,13 @@ class MbPump
      */
     private $name;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="relayName", type="string", length=255, nullable=true)
+     */
+    private $relayName;
+
 
     /**
      * Get id
@@ -92,6 +99,30 @@ class MbPump
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set relayName
+     *
+     * @param string $relayName
+     *
+     * @return MbPump
+     */
+    public function setRelayName($relayName)
+    {
+        $this->relayName = $relayName;
+
+        return $this;
+    }
+
+    /**
+     * Get relayName
+     *
+     * @return string
+     */
+    public function getRelayName()
+    {
+        return $this->relayName;
     }
 }
 

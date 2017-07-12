@@ -37,7 +37,9 @@ services:
     RaspberryPiIOBundle\:
         resource: '../../src/RaspberryPiIOBundle/*'
         public: true
+        exclude: '../../src/RaspberryPiIOBundle/{Entity,Repository,Tests}'
         
     ControlBundle\:
         resource: '../../src/ControlBundle/*'
         public: true
+        exclude: '../../src/ControlBundle/{Entity,Repository,Tests}'

@@ -1,4 +1,17 @@
 services:
+    
     pump_service:
         class: ControlBundle\Services\PumpService
         arguments: ["@doctrine.orm.entity_manager"]
+    
+    ControlBundle\Form\MbPumpType:
+        arguments: ["@io_relay_service"]
+        tags: [form.type]
+    
+    ControlBundle\Form\MbLightSensorType:
+        arguments: ["@io_light_service"]
+        tags: [form.type]
+    
+    ControlBundle\Form\MbTemperatureSensorType:
+        arguments: ["@io_temperature_service"]
+        tags: [form.type]

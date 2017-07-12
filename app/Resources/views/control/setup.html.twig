@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	  <!-- Page Content -->
+	  <div class="container-fluid">
+	    <div class="row">	
+	      {{ form_start(form) }}
+	      {{ form_errors(form) }}
+		    <div class="col-lg-offset-2 col-lg-8 banner grey" style="margin-right:20px; color:white">
+		      <div class="row">
+                <div class="col-lg-6">
+		      	  <h4>TEMPERATURE SENSOR</h4>
+		      	  <hr>
+		      	  <p>Please set up sensors temperature </p>
+	        	  <label>Air :</label>
+	        	  {{ form_row(form.airTemp) }} 
+	        	  <label>Pool :</label>
+	        	  {{ form_row(form.poolTemp) }} 
+	        	  <label>Panel :</label>
+	        	  {{ form_row(form.panelTemp) }} 
+		        </div>
+		        <div class="col-lg-6">
+		      	  <h4>LIGHT SENSOR</h4>
+		      	  <hr>
+		      	  <p>Please set up sensor light </p>
+	        	  <label>Light :</label>
+	        	  {{ form_row(form.light) }}
+		      	  <h4>PUMP AND VALVE RELAY</h4>
+		      	  <hr>
+		      	  <p>Please set up relays </p>
+	        	  <label>Pump :</label>
+	        	  {{ form_row(form.pump) }} 
+		          {{ form_row(form.save) }}
+		        </div>
+		      </div>
+	        </div>
+	      {{ form_end(form) }}
+	    </div>
+	  </div>
+	</div>
+	<!-- /#wrapper -->
+
+{% endblock %}

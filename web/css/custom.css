@@ -12,6 +12,10 @@ body {
   	background-size: cover; 
   	color: rgba(230, 230, 230, 0.9);
 }
+
+hr {
+	margin-top: 0;
+}
 	
 /*-------------------------------------------------------------------------*/
 /* CONTAINER                                                               */
@@ -19,22 +23,27 @@ body {
 
 .blue {
 	background-color: #0066cc;
+	color: #1a1a1a;
 }
 
 .grey-blue {
 	background-color: #cce6ff;
+	color: #1a1a1a;
 }
 
 .deep-blue {
 	background-color: #002b80;
+	color: #1a1a1a;
 }
 
 .yellow {
 	background-color: #e6b800;
+	color: #1a1a1a;
 }
 
 .orange {
 	background-color: #e65c00;
+	color: #1a1a1a;
 }
 
 .grey {
@@ -73,14 +82,23 @@ body {
 	min-height: 160px;
 }
 
-.banner > h3, p, label {
-	color: #1a1a1a;
-}
-
 .banner > h3 {
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+	
+/*-------------------------------------------------------------------------*/
+/* FORM                                                                    */
+/*-------------------------------------------------------------------------*/
+
+.field {
+	width: 400px;
+	padding: 10px;
+}
+
+.save {
+	margin: 20px 20px 0 20px;
 }
 	
 /*-------------------------------------------------------------------------*/

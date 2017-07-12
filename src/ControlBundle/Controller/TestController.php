@@ -5,6 +5,8 @@ namespace ControlBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+use Symfony\Component\HttpFoundation\Response;
+
 class TestController extends Controller
 {
     /**
@@ -16,6 +18,10 @@ class TestController extends Controller
 	    
 	    $pumpNameArray = $pumpService->getNameArray();
 	    
-        var_dump($pumpNameArray);
+	    $pumpService->setPumpState($pumpNameArray[0], false);
+	    
+	    $pumpState1 = $pumpService->getPumpState($pumpNameArray[0]);
+        
+        return new Response($pumpState1 ? "On" : "Off");
     }
 }

@@ -5,16 +5,18 @@ html {
 }
 
 body {
-  	background-image: url('../img/back-pool.jpg'); 
+  	background-image: url('../img/pool.jpg'); 
   	background-repeat: no-repeat;
   	background-attachment: fixed;
   	background-position: top;
   	background-size: cover; 
   	color: rgba(230, 230, 230, 0.9);
+  	width: 100%;
 }
 
 hr {
 	margin-top: 0;
+	color: #d9d9d9;
 }
 	
 /*-------------------------------------------------------------------------*/
@@ -24,31 +26,48 @@ hr {
 .blue {
 	background-color: #0066cc;
 	color: #1a1a1a;
+	margin-right:10px;
+	text-align:center;
 }
 
 .grey-blue {
 	background-color: #cce6ff;
 	color: #1a1a1a;
+	margin-right:10px;
+	text-align:center;
 }
 
 .deep-blue {
 	background-color: #002b80;
 	color: #1a1a1a;
+	margin-right:10px;
+	text-align:center;
 }
 
 .yellow {
 	background-color: #e6b800;
 	color: #1a1a1a;
+	margin-right:10px;
+	text-align:center;
 }
 
+.light-yellow {
+	background-color: #ffffcc;
+	color: #1a1a1a;
+	margin-right:10px;
+	text-align:center;
+} 
+           
 .orange {
 	background-color: #e65c00;
 	color: #1a1a1a;
+	margin-right:10px;
+	text-align:center;
 }
 
 .grey {
 	background-color: rgba(26, 26, 26, 0.9);
-	color: #e6e6e6;
+	color: #d9d9d9;
 }
 
 .zoom-in {
@@ -92,11 +111,6 @@ hr {
 /* FORM                                                                    */
 /*-------------------------------------------------------------------------*/
 
-.field {
-	width: 400px;
-	padding: 10px;
-}
-
 .save {
 	margin: 20px 20px 0 20px;
 }
@@ -105,8 +119,30 @@ hr {
 /* TOGGLE                                                                  */
 /*-------------------------------------------------------------------------*/
 
-/*.btn-primary {
-    background-image: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
-    background-repeat: repeat-x;
-    border-color: #0d0d0d;
-}*/
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: rgba(0, 102, 204, 0.5);
+}
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: rgba(0, 102, 204, 0.5);
+}
+	
+/*-------------------------------------------------------------------------*/
+/* MODAL                                                                   */
+/*-------------------------------------------------------------------------*/
+
+.black-color
+{
+	color: #262626;
+}
+	
+/*-------------------------------------------------------------------------*/
+/* LIST                                                                    */
+/*-------------------------------------------------------------------------*/
+
+.list-item {
+	margin-bottom: 2%;
+}
+
+.list-code {
+	margin-bottom: 1%;
+}

@@ -30,9 +30,9 @@ class MbTemperatureSensorType extends AbstractType
     		$TemperatureSensorNameArray[$name] = $name;
     	}
     	
-        $builder->add('name', ChoiceType::class, array(
+        $builder->add('serialNumber', ChoiceType::class, array(
         	'choices' => $TemperatureSensorNameArray,
-            'label'  => false,
+            'label'  => false
         ));
     }
     

@@ -19,7 +19,7 @@ class LowLevelController extends Controller
 	    
 	    $temperature = $temperatureService->getValue($sensorNameArray[0]);
 	    
-        return new Response($temperature);
+        return new Response(number_format($temperature, 0));
     }
     
     /**
@@ -33,7 +33,7 @@ class LowLevelController extends Controller
 	    
 	    $temperature = $temperatureService->getValue($sensorNameArray[1]);
 	    
-        return new Response($temperature);
+        return new Response(number_format($temperature, 0));
     }
     
     /**
@@ -47,7 +47,7 @@ class LowLevelController extends Controller
 	    
 	    $temperature = $temperatureService->getValue($sensorNameArray[2]);
 	    
-        return new Response($temperature);
+        return new Response(number_format($temperature, 0));
     }
     
     /**
@@ -61,7 +61,7 @@ class LowLevelController extends Controller
 	    
 	    $light = $lightService->getValue($sensorNameArray[0]);
 	    
-        return new Response($light);
+        return new Response(number_format($light, 0));
     }
     
     /**

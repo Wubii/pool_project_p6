@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div class="container-fluid">
+  	<div class="row">
+  	  <div class="col-lg-offset-1 col-lg-10 banner grey">
+  	  	<div class="row">
+  	  	  <h2 style="text-align:center; color:#0080ff;margin-bottom:40px"><strong>Getting started with your pool project</strong></h2>
+  	  	</div>
+  	  	
+  	  	<div class="row">
+  	  	  <div class="col-lg-12">
+  	  	    <h3><b> 1. Prerequisites </b></h3>
+  	  	    </br>
+  	  	    <h4> This project is developed with the framework <a href="https://symfony.com/" style="color:#0080ff">Symfony 3.3.5</a> and <span style="color:#0080ff">Php7</span>. To make your pool project work, you will need : </h4>
+  	  	    </br>
+  	  	    
+  	  	    <div class="col-lg-6">
+  	  	      <ul class="list-group" style="margin-left:3%">
+  	  	  	    <li class="list-item" style="color:#0080ff"> Raspberry Pi 3 </li>
+  	  	  	    <figure class="figure">
+   	  	  	      <img src="{{ asset('img/rasp.jpg') }}" style="width:16%">
+   	  	  	      <figcaption class="figure-caption">Raspberry Pi Carte Mère 3 Model B Quad Core CPU 1.2 GHz 1 Go RAM</figcaption>
+  	  	  	      </br>
+  	  	  	      </br>
+  	  	  	    </figure>
+  	  	  	    <li class="list-item" style="color:#0080ff"> Three temperature sensors </li>
+  	  	  	    <figure class="figure">
+   	  	  	      <img src="{{ asset('img/sensor.jpg') }}" style="width:15%">
+   	  	  	      <figcaption class="figure-caption">SunFounder Photoresistor Light Sensor Module for Arduino and Raspberry Pi.</figcaption>
+  	  	  	      </br>
+  	  	  	      </br>
+  	  	  	    </figure>
+  	  	  	    <li class="list-item" style="color:#0080ff"> One luminosity sensor: </li>
+  	  	  	    <figure class="figure">
+   	  	  	      <img src="{{ asset('img/light.jpg') }}" style="width:14%">
+   	  	  	      <figcaption class="figure-caption">SunFounder Photoresistor Light Sensor Module for Arduino and Raspberry Pi.</figcaption>
+  	  	          </br>
+  	    	      </br>
+  	  	  	    </figure>
+  	  	  	    <li class="list-item" style="color:#0080ff"> A waterproof box to put your equipment </li>
+	  	        </br>
+	  	        </br>
+  	  	  	  </ul>
+  	  	  	</div>
+  	  	  	
+  	  	  	<div class="col-lg-6" style="border-left:1px solid white">
+  	  	      <ul class="list-group" style="margin-left:3%">
+  	  	  	    <li class="list-item" style="color:#0080ff"> Two relays </li>
+  	  	  	    <figure class="figure">
+   	  	  	      <img src="{{ asset('img/relay.jpg') }}" style="width:10%">
+   	  	  	      <figcaption class="figure-caption">SunFounder Photoresistor Light Sensor Module for Arduino and Raspberry Pi.</figcaption>
+  	  	  	      </br>
+  	  	  	      </br>
+  	  	  	    </figure>
+  	  	  	    <li class="list-item" style="color:#0080ff"> An analog digital converter </li>
+  	  	  	    <figure class="figure">
+   	  	  	      <img src="{{ asset('img/converter.jpg') }}" style="width:15%">
+   	  	  	      <figcaption class="figure-caption">SunFounder Photoresistor Light Sensor Module for Arduino and Raspberry Pi.</figcaption>
+  	  	  	      </br>
+  	  	  	      </br>
+  	  	  	    </figure>
+  	  	  	    <li class="list-item" style="color:#0080ff"> Jumper cables / Breadboard Jumper Wires </li>
+  	  	  	    <figure class="figure">
+   	  	  	      <img src="{{ asset('img/jumper.jpg') }}" style="width:15%">
+   	  	  	      <figcaption class="figure-caption">SunFounder Photoresistor Light Sensor Module for Arduino and Raspberry Pi.</figcaption>
+  	  	  	      </br>
+  	  	  	      </br>
+  	  	  	    </figure>
+  	  	  	    <li class="list-item" style="color:#0080ff"> A breadboard for the electronic connections </li>
+	  	        </br>
+	  	        </br>
+  	  	      </ul>
+	  	    </div>
+	  	  </div>
+	  	</div>
+	  	    
+	    <div class="row">
+	      <div class="col-lg-12">
+	  	    <h3><strong> 2. Installation </strong></h3>
+  	  	    </br>
+	  	    <h4 style="margin-bottom:2%"> To make your pool project work, clone the Github repository: </h4>
+	  	    <kbd>git clone /path/to/existing/git/repository   /path/where/it/should/be/cloned</kbd>
+	  	    </br>
+	  	    </br>
+	  	    <h4> Once you’ve done this, some command need to be executed to start your project: </h4>
+	  	    <ul>
+	  	      <li class="list-code">
+	  	      	Run composer:
+	  	      </li>
+	  	      <kbd>git clone /path/to/existing/git/repository   /path/where/it/should/be/cloned</kbd>
+	  	      </br>
+	  	      <li class="list-code" style="margin-top:3%">
+	  	      	Create the project database in PhpMyAdmin and set it up in Symfony
+	  	      </li>
+	  	      <li class="list-code" style="margin-top:3%">
+	  	      	Update database with ORM:
+	  	      </li>
+	  	      <kbd>php bin/console doctrine:schema:update --force</kbd>
+	  	      </br>
+	  	      <li class="list-code" style="margin-top:3%"> Load fixtures: </li>
+	  	      <kbd>php bin/console doctrine:fixtures:load</kbd>
+	  	      </br>
+	  	      <li class="list-code" style="margin-top:3%"> Then go to the "Settings" page to associate your sensor and relays to fonctionnalities. </li>
+	  	    </ul>
+  	  	  </div>
+  	  	</div>
+  	  </div>
+  	</div>
+  </div>
+
+{% endblock %}
+
+

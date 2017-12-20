@@ -15,10 +15,6 @@ class RelayService
 	
 	public function __construct()
 	{
-		// system("gpio write 0 1");
-		// system("gpio write 1 1");
-		// system("gpio write 2 1");
-		
 		exec("gpio mode 0 out");
 		exec("gpio mode 1 out");
 		exec("gpio mode 2 out");
@@ -72,13 +68,19 @@ class RelayService
 	}
 	
 	function setValue($relay, $value)
-	{	
+	{
 		if(!is_bool($value))
 		{
 			return false;
 		}
 		
 		$value = $value ? "0" : "1";
+		
+		echo("</br>");
+		var_dump($relay);
+		echo("</br>");
+		var_dump($value);
+		echo("</br>");
 		
     	switch($relay)
     	{

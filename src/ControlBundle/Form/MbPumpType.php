@@ -23,18 +23,22 @@ class MbPumpType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-    	$pumpNameArray = [];
+    	$relayNameArray = [];
     	
     	foreach($this->rs->getNameArray() as $name)
     	{
-    		$pumpNameArray[$name] = $name;
+    		$relayNameArray[$name] = $name;
     	}
     	
         $builder
         
         	->add('relayName', ChoiceType::class, array(
-        		'choices' => $pumpNameArray,
-                'label'  => false
+        		'choices' => $relayNameArray,
+                'label'  => "Pump : ",
+                'label_attr' => array('style=text-align:left'),
+                //'attr' => array(
+                	//'style' => 'width:300px; display:inline-flex; margin-left:23px'
+                //)
         	));
     }
     

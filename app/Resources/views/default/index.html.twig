@@ -1,101 +1,262 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	  <!-- Page Content -->
-	  <div class="container-fluid">
-	    <div class="row">
-	      <div class="col-lg-offset-2 col-lg-2 banner zoom-in grey-blue" style="margin-right:20px">
-	  	    <h3>Air temperature</h3>
-	        <h3 id="temprature-air"> {{ temperature1 }} °C</h3>
-	      </div>
-	      <div class="col-lg-2 banner zoom-in blue" style="margin-right:20px">
-	        <h3>Water temperature</h3>
-	        <h3 id="temprature-poolwater"> {{ temperature2 }}  °C</h3>
-	      </div>
-	      <div class="col-lg-2 banner zoom-in yellow" style="margin-right:20px">
-	        <h3> Luminosity </h3>
-			<h3></h3>
-	      </div>
-	      <div class="col-lg-2 banner zoom-in orange" style="margin-right:20px;text-align:center">
-	        <h3>Solar panel Temperature</h3>
-	        <h3 id="temprature-solarpanel"> {{ temperature3 }} °C </h3>
-	      </div>
-		</div>
-		<div class="row">
-	      <div class="col-lg-offset-3 col-lg-3 banner zoom-in grey" style="margin-right:20px;text-align:center">
-	        <h3 style="color:#e6e6e6"> Solar panel I / O </h3>
-			<input id="toggle-one" style="cursor:none" type="checkbox">
-	      </div>
-	      <div class="col-lg-3 banner zoom-in grey" style="text-align:center">
-	        <h3 style="color:#e6e6e6">Pump I / O</h3>
-			<input id="toggle-two" style="cursor:none" {% if relay2 != false %} checked {% endif %} disabled type="checkbox">
-	      </div>
-		</div>
+
+  <!-- Page Content -->
+  <div class="container-fluid">
+  	<div class="row" style="text-align:center; color:#1a1a1a; margin-bottom:30px">
+  	  <div class="col-lg-12">
+  	    <h1>Pool temperature controller </h1>
+  	  </div>
+  	</div>
+  	
+  	<div class="row">
+	  <div class="col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4 banner grey zoom-in"   style="margin-right:15px;text-align:center">
+	  	<p href="#modeModal" class="pull-right" style="margin-top:6px; cursor:pointer" data-toggle="modal">
+	  	  <i class="fa fa-info-circle" aria-hidden="true"></i>
+	  	</p>
+	  	<h3>Mode </h3>
+	  	<input id="toggle-mode" data-on="Auto" data-off="Manual" type="checkbox">
 	  </div>
 	</div>
-  <!-- /#page-content-wrapper -->
+  	
+    <div class="row">
+      <div class="col-md-offset-1 col-md-2 col-lg-offset-1 col-lg-2 banner zoom-in grey-blue" style="min-height:170px">
+      	<div class="row">
+      	  <img src="{{ asset('img/air.png') }}" style="width:28px; margin-top:5px">
+      	</div>
+      	<div class="row">
+  	      <h3> Air</h3>
+        </div>
+        <div class="row">
+          <h3 id="temprature-air"> {{ airTemp | round(0, 'common') }}°C</h3>
+        </div>
+      </div>
+      <div class="col-md-2 col-lg-2 banner zoom-in blue" style="min-height:170px">
+      	<i class="fa fa-tint fa-2x" aria-hidden="true" style="margin-top:5px"></i>
+        <h3> Water </h3>
+        <h3 id="temprature-poolwater"> {{ poolTemp  | round(0, 'common') }}°C</h3>
+      </div>
+      <div class="col-md-2 col-lg-2 banner zoom-in orange" style="min-height:170px">
+      	<img src="{{ asset('img/panel.png') }}" style="width:27px; margin-top:5px">
+        <h3>Solar panel</h3>
+        <h3 id="temprature-solarpanel"> {{ panelTemp  | round(0, 'common') }}°C </h3>
+      </div>
+      <div class="col-md-2 col-lg-2 banner zoom-in yellow" style="min-height:170px">
+      	<i class="fa fa-umbrella fa-2x" aria-hidden="true" style="margin-top:5px"></i>
+        <h3> Weather </h3>
+        {% if isSunny %}<h3><i id="sun" class="fa fa-sun-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Sunny !"></i></h3>
+        {% else %}<h3><i id="cloud" class="fa fa-cloud" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cloudy.."></i></h3>{% endif %}
+      </div>
+      <div class="col-md-2 col-lg-2 banner zoom-in light-yellow" style="min-height:170px">
+      	<img src="{{ asset('img/luminosity.png') }}" style="width:33px;margin-top:3px">
+      	<h3> Luminosity </h3>
+		<h3 id="luminosity">{{ luminosity }} / 100</h3>
+	  </div>
+	</div>
+
+	<div class="row">
+      <div class="col-md-offset-3 col-md-3 col-lg-offset-3 col-lg-3 banner zoom-in grey" style="margin-right:15px;text-align:center">
+        <h3> Solar panel</h3>
+        <div id="div-valve" class="checkbox">
+          <label>
+		    <input id="toggle-valve" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+          </label>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 banner zoom-in grey" style="margin-left:20px;text-align:center">
+        <h3>Pump</h3>
+        <div id="div-pump" class="checkbox">
+          <label>	
+		    <input id="toggle-pump" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+          </label>
+        </div>
+      </div>
+	</div>
+
+	{# {% if pumpState != false %} checked {% endif %}#}
+	
+	<div id="timesheet-row" class="row" {% if mode == false %} hidden{% endif %}>
+	  <div class="col-lg-offset-2 col-lg-8 banner grey zoom-in">
+	  	<div class="col-lg-offset-3 col-lg-6" style="text-align:center">
+	  	  <h3>Timesheet scheduler</h3>
+	  	  </br>
+	  	</div>
+	  	<div class="row">
+	  	  <div class="col-lg-12">
+	  	    <table class="table table-responsive table-condensed" style="margin-top:40px; border-color:rgba(26, 26, 26, 0.9);position:relative; width:100%">
+	  	      <tr>
+	  		    {% for timesheet in timesheets %}
+	  	  	      <td style="{% if timesheet.status == 0 %} background-color:#bfbfbf {% endif %} {% if timesheet.status == 1 %} background-color:#0066ff {% endif %}; height:40px; border-top:0px" data-toggle="tooltip" data-placement="top" title="{{ timesheet.hour|date('H:i') }}"></td>
+	  	        {% endfor %}
+	  	      </tr>
+	  	    </table>
+	  	  </div>
+	    </div>
+	  </div>
+    </div>
+  
+    <div id="modeModal" class="modal fade">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title black-color">Mode auto / manual</h5>
+          </div>
+          <div class="modal-body">
+            <p class="black-color">The manual mode allow you to control all of your equipment manually from the main page.</p>
+            <p class="black-color">The auto mode allow you to configure automatic settings by temperature or hour from the <a href="/schedule"> Schedule </a>page.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- /#wrapper -->
+  
+{% endblock %}
+
+{% block javascripts %}
     
     <script>
-      $(function() {
-          $('#toggle-one').bootstrapToggle();
-          $('#toggle-two').bootstrapToggle();
-          
-          $("#toggle-one").change(function()
-          {
-          	var state = $(this).prop("checked") ? "1" : "0";
-
-      		  $.get(Routing.generate('LOW_LEVEL_set_relay_state', {relay: "relay1", value: state}))
-          })
-          
-          update();
-
-          setInterval(function(){update();}, 10000);
-      })
-        
-      function update()
-      {
-      	console.log(update);
-      	updateTemperatures();
-      	updateToggleOne();
-      }
-      
-      function updateTemperatures()
-      {
-				$.get(Routing.generate('LOW_LEVEL_get_air_temperature'), function(data) 
-      	{
-      		console.log(data);
-      		$("#temprature-air").text(data);
-				});
-			
-				$.get(Routing.generate('LOW_LEVEL_get_poolwater_temperature'), function(data) 
+    
+        $(function() 
         {
-      		console.log(data);
-      		$("#temprature-poolwater").text(data);
-				});
-				
-				$.get(Routing.generate('LOW_LEVEL_get_solarpanel_temperature'), function(data) 
-      	{
-      		console.log(data);
-      		$("#temprature-solarpanel").text(data);
-				});
-      }
+            $('#toggle-valve').bootstrapToggle({% if valveState != false %} 'on' {% else %} 'off' {% endif %});
+            $('#toggle-pump').bootstrapToggle({% if pumpState != false %} 'on' {% else %} 'off' {% endif %});
+            $('#toggle-mode').bootstrapToggle({% if mode != false %} 'on' {% else %} 'off' {% endif %});
+  
+            $("#toggle-valve").change(function()
+            {
+	                console.log("valve1");
+	            var state = $(this).prop("checked") ? "1" : "0";
+	            $.get(Routing.generate('CONTROL_set_valve_state', {state: state}), function(data)
+	            {
+	                console.log("valve");
+	            })
+	        })
+	
+	        $("#toggle-pump").change(function()
+	        {
+                console.log("pump1");
+	            var state = $(this).prop("checked") ? "1" : "0";
+	            $.get(Routing.generate('CONTROL_set_pump_state', {state: state}), function(data)
+	            {
+	                console.log("pump");
+	            })
+	        })
+  
+            $("#toggle-mode").change(function()
+            {
+            	if($(this).prop("checked"))
+            	{
+            		var mode = "auto";
+            		
+            		$('#toggle-valve').bootstrapToggle('disable')
+            		$('#toggle-pump').bootstrapToggle('disable')
+            		document.getElementById("timesheet-row").style.display = "initial";
+            	}
+            	else
+            	{
+            		var mode = "manual";
+            		
+            		$('#toggle-valve').bootstrapToggle('enable')
+            		$('#toggle-pump').bootstrapToggle('enable')
+        		    document.getElementById("timesheet-row").style.display = "none";
+            	}
+
+  	            $.get(Routing.generate('CONTROL_set_mode', {mode: mode}), function(data)
+  	            {
+            	console.log("toto");
+            	})
+            })
+  
+            // update();
+
+            // setInterval(function(){update();}, 60000);
+        })
         
-      function updateToggleOne()
-      {
-      	$.get(Routing.generate('LOW_LEVEL_get_relay_state', {relay: "relay1"}), function(data) 
-      	{
-      		if(data == "On")
-      		{
-      			$('#toggle-one').bootstrapToggle("on");
-      		}
-      		else if(data == "Off")
-      		{
-      			$('#toggle-one').bootstrapToggle("off");
-      		}
-				});
-      }
+        function update()
+        {
+//      	    updateTemperatures();
+//       	    updateToggleValve();
+//      	    updateTogglePump();
+//      	    updateToggleMode();
+        }
+      
+        // function updateTemperatures()
+        // {
+	       // $.get(Routing.generate('CONTROL_sensor_data'), function(data) 
+	       // {
+        // 	    var sensorData = JSON.parse(data);
+	       // 	$("#temprature-air").text(parseFloat(sensorData["airTemp"]).toFixed() + "°C");
+        //         $("#temprature-poolwater").text(parseFloat(sensorData["poolTemp"]).toFixed() + "°C");
+      		//     $("#temprature-solarpanel").text(parseFloat(sensorData["panelTemp"]).toFixed() + "°C");
+      		//     $("#luminosity").text(parseFloat(sensorData["luminosity"]).toFixed() + " / 100");
+      		    
+      		//     if(sensorData["weather"] == true)
+      	 //   	{
+      	 //   		$('#sun').removeAttr('hidden');
+      	 //   		$('#cloud').attr('hidden');
+      	 //   	}
+      	 //   	else if(sensorData["weather"] == false)
+      	 //   	{
+      	 //   		$('#sun').attr('hidden');
+      	 //   		$('#cloud').removeAttr('hidden');
+      	 //   	}
+      		    
+	       // 	console.log(sensorData);
+	       // });
+        // }
+        
+   //     function updateToggleValve()
+   //     {
+   //         $.get(Routing.generate('CONTROL_get_valve_state'), function(data) 
+   //   	    {
+   //   		    if(data == "On")
+   //   		    {
+   //   			    $('#toggle-valve').bootstrapToggle("on");
+   //   		    }
+   //   		    else if(data == "Off")
+   //   		    {
+   //   			    $('#toggle-valve').bootstrapToggle("off");
+   //   		    }
+			// });
+   //     }
+        
+   //     function updateTogglePump()
+   //     {
+   //   	    $.get(Routing.generate('CONTROL_get_pump_state'), function(data) 
+   //   	    {
+   //   		    if(data == "On")
+   //   		    {
+   //   			    $('#toggle-pump').bootstrapToggle("on");
+   //   		    }
+   //   		    else if(data == "Off")
+   //   		    {
+   //   			    $('#toggle-pump').bootstrapToggle("off");
+   //   		    }
+			// });
+   //     }
+        
+      //  function updateToggleMode()
+      //  {
+      //	    $.get(Routing.generate('CONTROL_get_mode'), function(data) 
+      //	    {
+      //		    if(data == "auto")
+      //		    {
+      //			    $('#toggle-mode').bootstrapToggle("on");
+      //		    }
+      //		    else if(data == "manual")
+      //		    {
+      //			    $('#toggle-mode').bootstrapToggle("off");
+      //		    }
+		    // });
+      //  }
+        
+        $(function () {
+		   $('[data-toggle="tooltip"]').tooltip()
+	    })
     </script>
 
 {% endblock %}

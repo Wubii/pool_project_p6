@@ -5,6 +5,8 @@ namespace RaspberryPiIOBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+use Symfony\Component\HttpFoundation\Response;
+
 class DefaultController extends Controller
 {
     /**
@@ -52,8 +54,10 @@ class DefaultController extends Controller
 	    
 	    $relayNameArray = $relayService->getNameArray();
 	    
-	    $relay1 = $relayService->setValue($relayNameArray[0], true);
-	    $relay2 = $relayService->setValue($relayNameArray[1], true);
+	    var_dump($relayNameArray);
+	    
+	    $relay1 = $relayService->setValue($relayNameArray[0], false);
+	    $relay2 = $relayService->setValue($relayNameArray[1], false);
 	    $relay2 = $relayService->setValue($relayNameArray[2], false);
 	    
 	    $relay1 = $relayService->getValue($relayNameArray[0]);

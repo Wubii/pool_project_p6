@@ -27,11 +27,25 @@ class MbSetup
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
+    
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="mode", type="boolean", nullable=false)
+     */
+    private $mode;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="tempSetPoint", type="integer", nullable=true)
+     */
+    private $tempSetPoint;
 
     /**
      * @var \stdClass
      *
-     * @ORM\OneToOne(targetEntity="MbValve", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="MbValve",  cascade={"persist"})
      * @ORM\JoinColumn(name="valve_id", referencedColumnName="id", nullable=true, unique=true)
      */
     private $valve;
@@ -74,8 +88,20 @@ class MbSetup
      * @ORM\OneToOne(targetEntity="MbLightSensor", cascade={"persist"})
      * @ORM\JoinColumn(name="light_id", referencedColumnName="id", nullable=true, unique=true)
      */
-    private $light;
-
+    private $luminosity;
+    
+    /**
+     * @var int
+     * 
+     * @ORM\Column(name="luminosityThreshold", type="integer", nullable=true)
+     */
+    private $luminosityThreshold;
+    
+    public function __construct()
+    {
+    	$this->luminosityThreshold = false;
+    }
+    
 
     /**
      * Get id
@@ -109,6 +135,54 @@ class MbSetup
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set mode
+     *
+     * @param string $mode
+     *
+     * @return MbSetup
+     */
+    public function setMode($mode)
+    {
+        $this->mode = $mode;
+
+        return $this;
+    }
+
+    /**
+     * Get mode
+     *
+     * @return string
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
+
+    /**
+     * Set tempSetPoint
+     *
+     * @param integer $tempSetPoint
+     *
+     * @return MbSetup
+     */
+    public function setTempSetPoint($tempSetPoint)
+    {
+        $this->tempSetPoint = $tempSetPoint;
+
+        return $this;
+    }
+
+    /**
+     * Get tempSetPoint
+     *
+     * @return int
+     */
+    public function getTempSetPoint()
+    {
+        return $this->tempSetPoint;
     }
 
     /**
@@ -232,27 +306,51 @@ class MbSetup
     }
 
     /**
-     * Set light
+     * Set luminosity
      *
-     * @param \stdClass $light
+     * @param \stdClass $luminosity
      *
      * @return MbSetup
      */
-    public function setLight($light)
+    public function setLuminosity($luminosity)
     {
-        $this->light = $light;
+        $this->luminosity = $luminosity;
 
         return $this;
     }
 
     /**
-     * Get light
+     * Get luminosity
      *
      * @return \stdClass
      */
-    public function getLight()
+    public function getLuminosity()
     {
-        return $this->light;
+        return $this->luminosity;
+    }
+
+    /**
+     * Set luminosityThreshold
+     *
+     * @param integer $luminosityThreshold
+     *
+     * @return MbluminositySensor
+     */
+    public function setLuminosityThreshold($luminosityThreshold)
+    {
+        $this->luminosityThreshold = $luminosityThreshold;
+
+        return $this;
+    }
+
+    /**
+     * Get luminosityThreshold
+     *
+     * @return int
+     */
+    public function getLuminosityThreshold()
+    {
+        return $this->luminosityThreshold;
     }
 }
 

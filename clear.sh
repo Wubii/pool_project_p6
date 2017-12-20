@@ -14,8 +14,8 @@ chmod 777 var/cache
 chmod 777 var/logs
 chmod 777 var/sessions
 
-php bin/console cache:clear
-php bin/console cache:clear --env=prod
+php bin/console cache:clear --no-warmup
+php bin/console cache:clear --no-warmup --env=prod
 
 #php bin/console assets:install web
 php bin/console assets:install --symlink web

@@ -31,7 +31,7 @@ class MbValve
     /**
      * @var bool
      *
-     * @ORM\Column(name="state", type="boolean", nullable=true)
+     * @ORM\Column(name="state", type="integer", nullable=true)
      */
     private $state;
 

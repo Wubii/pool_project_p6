@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: mb_pool
+    database_user: root
+    database_password: Ardveau64
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: battista.marion@gmail.com
+    mailer_password: Nouveaumonde1
+    secret: d9e6f47dcf743801451827f14a5c3017ca64e086

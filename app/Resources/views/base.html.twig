@@ -6,14 +6,15 @@
     
     {% block stylesheets %}{% endblock %}
     
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}" />
         
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.css') }}" />
+    {#<link rel="stylesheet" href="{{ asset('css/bootstrap-theme.css') }}" />#}
     <link rel="stylesheet" href="{{ asset('css/bootstrap-toggle.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/simple-sidebar.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.2/css/bootstrap-slider.min.css">
     
     </head>
     <body>
@@ -23,12 +24,15 @@
 		    <div id="sidebar-wrapper">
 		      <ul class="sidebar-nav">
 		        <li class="sidebar-brand">
-              <a href="#">
+              <a href="/">
 		        Pool Project
               </a>
             </li>
-            <li>
+            <li> 
               <a href="/">Dashboard</a>
+            </li>
+            <li>
+              <a href="/readme">Read me</a>
             </li>
             <li>
               <a href="/history">History</a>
@@ -36,27 +40,50 @@
             <li>
               <a href="/schedule">Schedule</a>
             </li>
+            {% if is_granted("ROLE_ADMIN") %}
             <li>
-              <a href="/settings">Settings</a>
+              <a href="/control/setup">Settings</a>
             </li>
+            {% endif %}
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li>
+              <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+            </li>
+            {% else %}
+            <li>
+              <a href="{{ path('fos_user_registration_register') }}">Register</a>
+            </li>
+            <li>
+              <a href="{{ path('fos_user_security_login') }}">Login</a>
+            </li>
+            {% endif %}
           </ul>
         </div>
       <!-- /#sidebar-wrapper -->
       
-      <div id="page-content-wrapper">
-	    <a href="#menu-toggle">
-	      <i id="menu-toggle" class="fa fa-chevron-right fa-4x" style="color:black" aria-hidden="true"></i>
-		</a>
+      <div id="page-content-wrapper">    
+		    <a href="#menu-toggle">
+		      <i id="menu-toggle" class="fa fa-chevron-right fa-4x" style="color:black" aria-hidden="true"></i>
+			  </a>
+			
       
+    {% block body %}
+    
+    {% endblock %}
+    
+      </div>
+    </div>
+
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
     
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-toggle.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-toggle.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.2/bootstrap-slider.min.js"></script>
     
     <!-- Menu Toggle Script -->
     <script>
@@ -66,8 +93,7 @@
     });
     </script>
     	
-      {% block body %}{% endblock %}
-      {% block javascripts %}{% endblock %}
+    {% block javascripts %}{% endblock %}
       
     </body>
 </html>

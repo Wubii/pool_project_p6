@@ -1,8 +1,34 @@
 services:
     
-    pump_service:
+    control_pump_service:
         class: ControlBundle\Services\PumpService
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: 
+            - "@doctrine.orm.entity_manager"
+    
+    control_sensor_service:
+        class: ControlBundle\Services\SensorService
+        arguments: 
+            - "@doctrine.orm.entity_manager"
+            - "@io_temperature_service"
+            - "@io_light_service"
+    
+    control_pump_state_service:
+        class: ControlBundle\Services\PumpControlService
+        arguments: 
+            - "@doctrine.orm.entity_manager"
+            - "@io_relay_service"
+    
+    control_valve_state_service:
+        class: ControlBundle\Services\ValveControlService
+        arguments: 
+            - "@doctrine.orm.entity_manager"
+            - "@io_relay_service"
+    
+    control_light_threshold_service:
+        class: ControlBundle\Services\LightThresholdService
+        arguments: 
+            - "@doctrine.orm.entity_manager"
+            - "@io_light_service"
     
     ControlBundle\Form\MbPumpType:
         arguments: ["@io_relay_service"]

@@ -23,7 +23,7 @@ class LightService
     	{
     		case self::LIGHT_SENSOR_1:
     			$file = fopen("/var/www/pool.com/data/light.txt", "r");
-    			$result = floatval(trim(fgets($file)));
+    			$result = 100 - intval(floatval(trim(fgets($file))) * 100);
     			fclose($file);
     			break;
     			

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+  <div class="container-fluid">
+	  <div class="row">
+	  	<div class="col-lg-offset-2 col-lg-8 banner grey" style="margin-right:20px; color:#d9d9d9">
+	      <h3> User list </h3>
+	      <table class="table">
+				  <thead>
+				    <tr>
+				      <th>#</th>
+				      <th>Username</th>
+				      <th>Email</th>
+				      <th>Password</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	{% set total = 0 %}
+				    {% for user in users %}
+				    {% set total = total + 1 %}
+					    <tr>
+					      <th scope="row">{{ total }}</th>
+					      <td>{{ user.username }}</td>
+					      <td>{{ user.email }}</td>
+					      <td>{{ user.password }} </td>
+					    </tr>
+				    {% endfor %}
+				  </tbody>
+				</table>
+	    </div>
+	  </div>
+	</div>
+
+{% endblock %}

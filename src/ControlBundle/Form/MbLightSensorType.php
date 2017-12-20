@@ -30,10 +30,12 @@ class MbLightSensorType extends AbstractType
     		$lightNameArray[$name] = $name;
     	}
     	
-        $builder->add('name', ChoiceType::class, array(
-        	'choices' => $lightNameArray,
-            'label'  => false
-        ));
+        $builder
+        	->add('serialNumber', ChoiceType::class, array(
+        		'choices' => $lightNameArray,
+            	'label'  => "Light : ",
+            	'label_attr' => array('style="margin-right:10px"'),
+        	));
     }
     
     /**

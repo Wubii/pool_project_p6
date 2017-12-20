@@ -46,9 +46,11 @@ class LoadSetup implements FixtureInterface
 		
 		$setup = new MbSetup();
 		$setup->setName("Setup");
+		$setup->setMode(false);
 		$setup->setValve($valve);
 		$setup->setPump($pump);
-		$setup->setLight($light);
+		$setup->setLuminosity($light);
+		$setup->setLuminosityThreshold(50);
 		$setup->setAirTemp($airTemp);
 		$setup->setPoolTemp($poolTemp);
 		$setup->setPanelTemp($panelTemp);

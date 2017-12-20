@@ -1,0 +1,57 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+{% block fos_user_content %}	 
+  <div class="row col-lg-offset-3 col-lg-6"> 
+    <h3 style="text-align:center"> Login </h3>
+    <hr>
+    <p style="text-align:center">You don't already have an account ? Please <a href="/register">register</a></p>
+  </div>
+  <div class="row" style="margin:40px 0">
+    <div class="col-lg-offset-4 col-lg-4">
+      
+      {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+      {% endif %}
+
+			<form action="{{ path("fos_user_security_check") }}" method="post">
+        <input class="form-control" type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+				
+				<div class="form-group">
+					<div class="col-lg-3">
+            <label class="col-form-label" for="username"></label>
+          </div>
+          <div class="col-9">
+            <input class="form-control" placeholder="Login" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-lg-3">
+						<label class="col-form-label" for="password"></label>
+					</div>
+					<div class="col-9">
+						<input class="form-control" placeholder="Password" type="password" id="password" name="_password" required="required" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-lg-12" style="margin:15px 0 25px 0">
+						<label class="form-check-label" for="remember_me">
+							<input class="form-check-input" type="checkbox" id="remember_me" name="_remember_me" value="on" /> Remember me
+  					</label>
+	  			</div>
+				</div>
+				
+				</br>
+				</br>
+				<input type="submit" class="btn btn-primary btn-block" style="margin-bottom:10px" id="_submit" name="_submit" value="Submit" />
+				
+			</form>
+    </div>
+  </div>
+{% endblock %}
+

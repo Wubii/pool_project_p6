@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new RaspberryPiIOBundle\RaspberryPiIOBundle(),
             new ControlBundle\ControlBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Ob\HighchartsBundle\ObHighchartsBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

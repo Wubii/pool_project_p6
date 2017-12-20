@@ -43,3 +43,8 @@ services:
         resource: '../../src/ControlBundle/*'
         public: true
         exclude: '../../src/ControlBundle/{Entity,Repository,Tests}'
+    
+    AppBundle\EventListener\RegistrationListener:
+        arguments: []
+        tags:
+            - { name: kernel.event_subscriber }

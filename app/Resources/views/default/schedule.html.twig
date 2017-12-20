@@ -2,6 +2,37 @@
 
 {% block body %}
 
+	<div class="container-fluid">
+	  <div class="row">
+	    <div class="col-lg-offset-2 col-lg-8 banner grey" style="margin-right:20px">
+	      <div class="col-lg-offset-3 col-lg-6">
+	        <h3 style="text-align:center"> Schedule </h3>
+	        <hr>
+	      </div>
+	      <div class="col-lg-offset-2 col-lg-8">
+		      {{ form_start(form) }}
+			      <table class="table table-responsive table-striped" style="background-color:rgba(242, 242, 242, 0.5); color:#0d0d0d;">
+			        <thead>
+			          <tr>
+			            <th style="text-align:center"> HOURS </th>
+			            <th style="text-align:center"> ON / OFF</th>
+			          </tr>
+			        </thead>
+			        <tbody style="text-align:center">
+			          {% for timesheet in form.entries %}
+			          <tr>
+			            <td style="vertical-align:middle">{{ timesheet.vars.data.hour|date('H:i') }}</td>
+			            <td style="text-align:centerd">{{ form_widget(timesheet.status) }} </td>
+			          </tr>
+			          {% endfor %}
+			        </tbody>
+			      </table>
+			      {{ form_widget(form.save) }}
+		      {{ form_end(form) }}
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 {% endblock %}
 

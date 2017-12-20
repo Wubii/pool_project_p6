@@ -1,0 +1,53 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}	
+
+  <div class="row col-lg-offset-3 col-lg-6"> 
+    <h3 style="text-align:center"> Register </h3>
+    <hr>
+    	<p style="text-align:center">If you already have an account, please <a href="/login">login</a></p>
+  </div>
+  <div class="row" style="margin:40px 0">
+    <div class="col-lg-offset-4 col-lg-4">
+      	{{ form_errors(form) }}
+      	<form class='fos_user_registration_register' action="{{ path("fos_user_registration_register") }}" method="post">
+    		<div class="form-group">
+					<div class="col-lg-4">
+            <label class="col-form-label" for="email"></label>
+          </div>
+          <div class="col-8">
+            {{ form_widget(form.email, { 'attr': { 'placeholder': 'Email', 'class' : 'bo' } }) }}
+          </div>
+        </div>
+        <div class="form-group">
+					<div class="col-lg-4">
+            <label class="col-form-label" for="username"></label>
+          </div>
+          <div class="col-8">
+            {{ form_widget(form.username, { 'attr': { 'placeholder': 'Username'} }) }}
+          </div>
+        </div>
+        <div class="form-group">
+					<div class="col-lg-4">
+            <label class="col-form-label" for="password"></label>
+          </div>
+          <div class="col-8">
+            {{ form_widget(form.plainPassword.first, { 'attr': { 'placeholder': 'Password'} }) }}
+					</div>
+				</div>
+        <div class="form-group">
+					<div class="col-lg-4">
+            <label class="col-form-label" for="confirmPassword"></label>
+          </div>
+          <div class="col-8">
+            {{ form_widget(form.plainPassword.second, { 'attr': { 'placeholder': 'Confirm password'} }) }}
+					</div>
+				</div>
+				{{ form_rest(form) }}
+				</br>
+				<input type="submit" class="btn btn-primary btn-block hoverable" id="_submit" name="_submit" value="Submit" />
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -6,30 +6,41 @@
 	    <div class="row">	
 	      {{ form_start(form) }}
 	      {{ form_errors(form) }}
-		    <div class="col-lg-offset-2 col-lg-8 banner grey" style="margin-right:20px; color:white">
+		    <div class="col-lg-offset-2 col-lg-8 banner grey" style="margin-right:20px">
 		      <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6" style="bocrder-right: 1px solid white; margin-top: 10px">
 		      	  <h4>TEMPERATURE SENSOR</h4>
 		      	  <hr>
-		      	  <p>Please set up sensors temperature </p>
-	        	  <label>Air :</label>
+		      	  <p><i> Please set up sensors temperature </i></p>
+		      	  </br>
 	        	  {{ form_row(form.airTemp) }} 
-	        	  <label>Pool :</label>
 	        	  {{ form_row(form.poolTemp) }} 
-	        	  <label>Panel :</label>
-	        	  {{ form_row(form.panelTemp) }} 
+	        	  {{ form_row(form.panelTemp) }}
+	        	  {{ form_row(form.tempSetPoint) }}
+	        	  </br>
+		      	  <h4 style="margin-top:15px">LIGHT SENSOR</h4>
+		      	  <hr>
+		      	  <p><i>Please set up sensor light </i></p>
+		      	  </br>
+	        	  {{ form_row(form.luminosity) }}
+	        	  {{ form_row(form.luminosityThreshold) }}
 		        </div>
-		        <div class="col-lg-6">
-		      	  <h4>LIGHT SENSOR</h4>
+		        <div class="col-lg-6" style="margin-top: 10px">
+		      	  <h4>PUMP RELAY</h4>
 		      	  <hr>
-		      	  <p>Please set up sensor light </p>
-	        	  <label>Light :</label>
-	        	  {{ form_row(form.light) }}
-		      	  <h4>PUMP AND VALVE RELAY</h4>
-		      	  <hr>
-		      	  <p>Please set up relays </p>
-	        	  <label>Pump :</label>
+		      	  <p><i>Please set up relays </i></p>
+		      	  </br>
 	        	  {{ form_row(form.pump) }} 
+	        	  </br>
+		      	  <h4>VALVE RELAY</h4>
+		      	  <hr>
+		      	  <p><i>Please set up relays and time to open or close relay</i></p>
+		      	  </br>
+	        	  {{ form_row(form.valve.relayOpenName) }}
+	        	  {#{{ form_row(form.valve.timeToOpen) }}#}
+	        	  </br>
+	        	  {{ form_row(form.valve.relayCloseName) }}
+	        	  {#{{ form_row(form.valve.timeToClose) }}#}
 		          {{ form_row(form.save) }}
 		        </div>
 		      </div>
@@ -37,7 +48,6 @@
 	      {{ form_end(form) }}
 	    </div>
 	  </div>
-	</div>
-	<!-- /#wrapper -->
+
 
 {% endblock %}
